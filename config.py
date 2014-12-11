@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+
+ANALYTICS_ID = 'UA-30726750-12'
+
 HOMEPAGE_URL = 'https://github.com/zhuzhuor/Unblock-Youku'
 
 SHORT_URL_MAPPING = {
