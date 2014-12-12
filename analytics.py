@@ -2,6 +2,8 @@
 
 import random
 import uuid
+
+# cannot use tornado.httpclient.AsyncHTTPClient (see http://git.io/EUDgzw)
 import requests
 
 
