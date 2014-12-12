@@ -35,6 +35,7 @@ class Analytics:
 
         resp = requests.post('https://ssl.google-analytics.com/collect',
                              data=payload)
+        return resp.status_code
 
 
 def main():
