@@ -33,7 +33,8 @@ class Analytics:
         if user_agent:
             payload['ua'] = user_agent
 
-        requests.post('https://ssl.google-analytics.com/collect', data=payload)
+        resp = requests.post('https://ssl.google-analytics.com/collect',
+                             data=payload)
 
 
 def main():
