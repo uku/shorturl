@@ -1,23 +1,21 @@
 #!/usr/bin/env python
 
 import random
-import urllib
 import uuid
-import tornado.httpclient
+import requests
 
 
 class Analytics:
     def __init__(self, tracking_id):
         assert tracking_id.startswith('UA-')
         self.tracking_id = tracking_id
-        self.http_client = tornado.httpclient.AsyncHTTPClient()
 
     def report_pageview(self, uri,
                         referer=None, user_ip=None, user_agent=None):
         rand = str(random.randrange(1 << 128))
         rand_uuid = str(uuid.uuid4())  # random uuid
 
-        payload_dict = {
+        payload = {
             'v': '1',
             'z': rand,  # cache buster
             'cid': rand_uuid,  # treat every hit as an independent one
@@ -27,19 +25,13 @@ class Analytics:
             'uip': '127.0.0.1'  # default
         }
         if referer:
-            payload_dict['dr'] = referer
+            payload['dr'] = referer
         if user_ip:
-            payload_dict['uip'] = user_ip
+            payload['uip'] = user_ip
         if user_agent:
-            payload_dict['ua'] = user_agent
-        payload = urllib.urlencode(payload_dict)
+            payload['ua'] = user_agent
 
-        request = tornado.httpclient.HTTPRequest(
-            url='https://ssl.google-analytics.com/collect',
-            method='POST',
-            body=payload
-        )
-        self.http_client.fetch(request, raise_error=True)
+        requests.post('https://ssl.google-analytics.com/collect', data=payload)
 
 
 def main():
