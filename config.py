@@ -18,7 +18,7 @@ SHORT_URL_MAPPING = {
     'feedback':     'https://zhuzhuor.wufoo.com/forms/z7x3p9/',
     'flash':        'https://github.com/zhuzhuor/Unblock-Youku/issues/209',
     'github':       'https://github.com/zhuzhuor/Unblock-Youku',
-    'httpbin':      'http://httpbin.org/get',  # for testing
+    'httpbin':      'http://httpbin.org/',  # for testing
     'malicious':    'https://github.com/zhuzhuor/Unblock-Youku/wiki/%E6%81%B6%E6%84%8F%E6%89%A9%E5%B1%95%E7%A8%8B%E5%BA%8F%E5%88%97%E8%A1%A8%E5%8F%8A%E7%94%84%E5%88%AB%E5%8A%9E%E6%B3%95',
     'modes':        'https://github.com/zhuzhuor/Unblock-Youku/wiki/%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%8C%BA%E5%88%AB',
     'proxy':        'https://github.com/zhuzhuor/Unblock-Youku/wiki/%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BE%E7%BD%AE%E7%A4%BA%E4%BE%8B',

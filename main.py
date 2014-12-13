@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import os
-import urlparse
+# import urlparse
 import tornado.ioloop
 import tornado.web
 import tornado.httpserver
@@ -13,26 +13,40 @@ from analytics import Analytics
 analytics_client = Analytics(ANALYTICS_ID)
 
 
+def construct_long_url(base_url, request_uri, short):
+    extra_part = request_uri[len(short) + 1:]
+    if len(extra_part) > 0:
+        if base_url[-1] == '/' and extra_part[0] == '/':
+            long_url = base_url + extra_part[1:]
+        else:
+            long_url = base_url + extra_part
+    else:
+        long_url = base_url
+
+    return long_url
+
+
 class ShortUrlHandler(SentryMixin, tornado.web.RequestHandler):
     def get(self):
-        short = self.request.path.lstrip('/')
+        path_sections = self.request.path.split('/')
+        if len(path_sections) > 1:
+            short = path_sections[1]
+        else:
+            short = ''
+
         if len(short) == 0:
             self.redirect(HOMEPAGE_URL, permanent=True)
-        elif short in ('favicon.ico', 'robots.txt',
-                       'sitemap.xml', 'unit-test'):
-            self.send_error(404)
+
         elif short in SHORT_URL_MAPPING:
-            long_url = SHORT_URL_MAPPING[short]
-            # http://stackoverflow.com/a/9538343/1766096
-            if len(self.request.query) > 0:
-                if urlparse.urlparse(long_url)[4]:
-                    long_url += '&' + self.request.query
-                else:
-                    long_url += '?' + self.request.query
+            long_url = construct_long_url(SHORT_URL_MAPPING[short],
+                                          self.request.uri, short)
             self.redirect(long_url, permanent=True)
+
         else:
             self.send_error(404)
-            self.captureMessage('Unmapped URL: ' + self.request.uri)
+            if short not in ('favicon.ico', 'robots.txt',
+                             'sitemap.xml', 'unit-test'):
+                self.captureMessage('Unmapped URL: ' + self.request.uri)
 
         analytics_client.report_pageview(
             uri=self.request.uri,

@@ -25,5 +25,5 @@ class UrlRedirectorTest(AsyncHTTPTestCase):
         self.assertEqual(404, response.code)
 
     def test_with_query(self):
-        response = self.fetch('/httpbin?query-string=1')
+        response = self.fetch('/httpbin/get?query-string=1')
         self.assertIn('"query-string": "1"', response.body)
