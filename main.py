@@ -55,6 +55,8 @@ class ShortUrlHandler(SentryMixin, tornado.web.RequestHandler):
             user_agent=self.request.headers.get('User-Agent')
         )
 
+    head = get
+
 
 application = tornado.web.Application([
     (r"/.*", ShortUrlHandler),
