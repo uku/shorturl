@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import urlparse
 import tornado.ioloop
 import tornado.web
 import tornado.httpserver
@@ -14,16 +15,24 @@ analytics_client = Analytics(ANALYTICS_ID)
 
 class ShortUrlHandler(SentryMixin, tornado.web.RequestHandler):
     def get(self):
-        short = self.request.uri.lstrip('/')
+        short = self.request.path.lstrip('/')
         if len(short) == 0:
             self.redirect(HOMEPAGE_URL, permanent=True)
+        elif short in ('favicon.ico', 'robots.txt',
+                       'sitemap.xml', 'unit-test'):
+            self.send_error(404)
+        elif short in SHORT_URL_MAPPING:
+            long_url = SHORT_URL_MAPPING[short]
+            # http://stackoverflow.com/a/9538343/1766096
+            if len(self.request.query) > 0:
+                if urlparse.urlparse(long_url)[4]:
+                    long_url += '&' + self.request.query
+                else:
+                    long_url += '?' + self.request.query
+            self.redirect(long_url, permanent=True)
         else:
-            if short in SHORT_URL_MAPPING:
-                self.redirect(SHORT_URL_MAPPING[short], permanent=True)
-            else:
-                self.send_error(404)
-                if self.request.uri != '/unit-test':
-                    self.captureMessage('Unmapped URL: ' + self.request.uri)
+            self.send_error(404)
+            self.captureMessage('Unmapped URL: ' + self.request.uri)
 
         analytics_client.report_pageview(
             uri=self.request.uri,
