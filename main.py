@@ -22,6 +22,8 @@ class ShortUrlHandler(SentryMixin, tornado.web.RequestHandler):
                 self.redirect(SHORT_URL_MAPPING[short], permanent=True)
             else:
                 self.send_error(404)
+                if self.request.uri != '/unit-test':
+                    self.captureMessage('Unmapped URL: ' + self.request.uri)
 
         analytics_client.report_pageview(
             uri=self.request.uri,
