@@ -7,7 +7,8 @@ import tornado.web
 import tornado.httpserver
 from raven.contrib.tornado import AsyncSentryClient, SentryMixin
 
-from config import ANALYTICS_ID, HOMEPAGE_URL, SHORT_URL_MAPPING
+from config import ANALYTICS_ID, HOMEPAGE_URL, \
+    SHORT_URL_MAPPING, IGNORED_SHORT_URLS
 
 from analytics import Analytics
 analytics_client = Analytics(ANALYTICS_ID)
@@ -44,16 +45,16 @@ class ShortUrlHandler(SentryMixin, tornado.web.RequestHandler):
 
         else:
             self.send_error(404)
-            if short not in ('favicon.ico', 'robots.txt',
-                             'sitemap.xml', 'unit-test'):
+            if short not in IGNORED_SHORT_URLS:
                 self.captureMessage('Unmapped URL: ' + self.request.uri)
 
-        analytics_client.report_pageview(
-            uri=self.request.uri,
-            referer=self.request.headers.get('Referer'),
-            user_ip=self.request.remote_ip,
-            user_agent=self.request.headers.get('User-Agent')
-        )
+        if short not in IGNORED_SHORT_URLS:
+            analytics_client.report_pageview(
+                uri=self.request.uri,
+                referer=self.request.headers.get('Referer'),
+                user_ip=self.request.remote_ip,
+                user_agent=self.request.headers.get('User-Agent')
+            )
 
     head = get
 
