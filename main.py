@@ -46,7 +46,8 @@ class ShortUrlHandler(SentryMixin, tornado.web.RequestHandler):
         else:
             self.send_error(404)
             if SENTRY_DSN is not None and short not in IGNORED_SHORT_URLS:
-                self.captureMessage('Unmapped URL: ' + self.request.uri)
+                # self.captureMessage('Unmapped URL: ' + self.request.uri)
+                pass
 
         if short not in IGNORED_SHORT_URLS:
             analytics_client.report_pageview(
