@@ -1,1 +1,1 @@
-web: python main.py
+web: gunicorn -k tornado main:application --log-file=-

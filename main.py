@@ -68,13 +68,7 @@ if SENTRY_DSN is not None:
     application.sentry_client = AsyncSentryClient(SENTRY_DSN)
 
 
-def main():
-    http_server = tornado.httpserver.HTTPServer(application)
-    http_port = int(os.environ.get("PORT", 8888))
-    http_server.bind(http_port)
-    http_server.start(0)
-    tornado.ioloop.IOLoop.instance().start()
-
-
 if __name__ == "__main__":
-    main()
+    http_port = int(os.environ.get("PORT", 8888))
+    application.listen(http_port)
+    tornado.ioloop.IOLoop.instance().start()
