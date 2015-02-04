@@ -1,4 +1,4 @@
 raven==5.1.1
 requests==2.5.0
 tornado==4.0.2
-unicorn==19.2.0
+gunicorn==19.2.0
