@@ -11,7 +11,7 @@ IGNORED_SHORT_URLS = frozenset([
 
 SHORT_URL_MAPPING = {
     'check':        'http://ipservice.163.com/isFromMainland',
-    'chrome':       'https://chrome.google.com/webstore/detail/unblock-youku/pdnfnkhpgegpcingjbfihlkjeighnddk/details',
+    'chrome':       'https://chrome.google.com/webstore/detail/unblock-youku/pdnfnkhpgegpcingjbfihlkjeighnddk/',
     'chrome-bug':   'https://github.com/zhuzhuor/Unblock-Youku/issues/45#issuecomment-10457179',
     'coinbase':     'https://coinbase.com/?r=531f53c632f694d4b20000f9&utm_campaign=user-referral&src=referral-link',
     'contributors': 'https://github.com/zhuzhuor/Unblock-Youku/contributors',
@@ -34,7 +34,7 @@ SHORT_URL_MAPPING = {
     'share2renren': 'http://share.renren.com/share/buttonshare.do?link=https://chrome.google.com/webstore/detail/unblock-youku/pdnfnkhpgegpcingjbfihlkjeighnddk/',
     'share2twitter': 'https://twitter.com/intent/tweet?url=https://chrome.google.com/webstore/detail/unblock-youku/pdnfnkhpgegpcingjbfihlkjeighnddk/',
     'share2weibo':  'http://service.weibo.com/share/share.php?url=https://chrome.google.com/webstore/detail/unblock-youku/pdnfnkhpgegpcingjbfihlkjeighnddk/',
-    'squid':        'https://github.com/zhuzhuor/Unblock-Youku/wiki/%E8%AE%A9Squid%E5%B8%A6%E6%9C%89Unblock-Youku%E5%8A%9F%E8%83%BD',
+    'squid':        'https://github.com/zhuzhuor/Unblock-Youku/wiki/%E5%9C%A8%E7%BE%8E%E5%9B%A2%E4%BA%91%E6%9E%B6%E8%AE%BE%E8%87%AA%E5%B7%B1%E7%9A%84-Unblock-Youku-%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8',
     'support_us':   'https://github.com/zhuzhuor/Unblock-Youku/wiki/Support-Us',
     'translators':  'https://webtranslateit.com/en/projects/4902-Unblock-Youku/top_translators',
     'viglink':      'https://github.com/zhuzhuor/Unblock-Youku/issues/47',
