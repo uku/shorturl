@@ -34,6 +34,7 @@ class ShortUrlHandler(SentryMixin, tornado.web.RequestHandler):
             short = path_sections[1]
         else:
             short = ''
+        short = short.lower()
 
         if len(short) == 0:
             self.redirect(HOMEPAGE_URL, permanent=True)
