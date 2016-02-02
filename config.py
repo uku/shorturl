@@ -2,7 +2,7 @@
 
 ANALYTICS_ID = 'UA-30726750-12'
 
-HOMEPAGE_URL = 'https://github.com/Unblocker/Unblock-Youku'
+HOMEPAGE_URL = 'https://www.uku.im/index_zhs.html'
 
 IGNORED_SHORT_URLS = frozenset([
     'favicon.ico', 'robots.txt', 'sitemap.xml', 'unit-test',
