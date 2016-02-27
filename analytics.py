@@ -33,8 +33,13 @@ class Analytics:
         if user_agent:
             payload['ua'] = user_agent
 
-        resp = requests.post('https://ssl.google-analytics.com/collect',
-                             data=payload)
+        try:
+            resp = requests.post('https://ssl.google-analytics.com/collect',
+                                 data=payload)
+        except Exception:
+            # Do nothing
+            return 403
+
         return resp.status_code
 
 

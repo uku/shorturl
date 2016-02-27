@@ -37,12 +37,12 @@ class ShortUrlHandler(SentryMixin, tornado.web.RequestHandler):
         short = short.lower()
 
         if len(short) == 0:
-            self.redirect(HOMEPAGE_URL, permanent=True)
+            self.redirect(HOMEPAGE_URL, permanent=False)
 
         elif short in SHORT_URL_MAPPING:
             long_url = construct_long_url(SHORT_URL_MAPPING[short],
                                           self.request.uri, short)
-            self.redirect(long_url, permanent=True)
+            self.redirect(long_url, permanent=False)
 
         else:
             self.send_error(404)
