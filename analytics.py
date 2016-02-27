@@ -35,7 +35,7 @@ class Analytics:
 
         try:
             resp = requests.post('https://ssl.google-analytics.com/collect',
-                                 data=payload)
+                                 data=payload, verify=False)
         except Exception:
             # Do nothing
             return 403
