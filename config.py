@@ -17,7 +17,7 @@ SHORT_URL_MAPPING = {
     'contributors': 'https://github.com/Unblocker/Unblock-Youku/contributors',
     'crx':          'https://clients2.google.com/service/update2/crx?response=redirect&x=id%3Dpdnfnkhpgegpcingjbfihlkjeighnddk%26uc',
     'custom':       'https://github.com/Unblocker/Unblock-Youku/wiki/Custom-backend-server-for-the-redirection-mode',
-    'dns':          'https://github.com/Unblocker/Unblock-Youku/issues/112',
+    'dns':          'https://github.com/Unblocker/Unblock-Youku/issues/618',
     'donate':       'https://coinbase.com/checkouts/1fd2ffdb109c17a9e7bacaa116d3dbc8',
     'faq':          'https://github.com/Unblocker/Unblock-Youku/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-FAQ',
     'feedback':     'https://groups.google.com/forum/#!forum/unblock-youku',
